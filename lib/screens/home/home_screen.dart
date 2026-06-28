@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth_service.dart';
+import '../../services/api_service.dart';
 import '../login/login_screen.dart';
 import '../inventory/inventory_screen.dart';
 import '../stock/stockIn_screen.dart';
@@ -17,7 +18,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  String token = ""; 
+  String token = "";
   String name = "";
   String email = "";
 
