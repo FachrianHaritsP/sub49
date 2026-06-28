@@ -1,25 +1,23 @@
-// import 'package:flutter/material.dart';
-//
-// class LoginScreen extends StatelessWidget {
-//   const LoginScreen({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: const Text('Login'),
-//       ),
-//       body: const Center(
-//         child: Text('Warehouse Mobile'),
-//       ),
-//     );
-//   }
-// }
-
 import 'package:flutter/material.dart';
+import '../../services/auth_service.dart';
+import '../home/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  final authService = AuthService();
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +50,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 40),
 
                 TextField(
+                  controller: emailController,
                   decoration: InputDecoration(
                     labelText: "Email",
                     prefixIcon: const Icon(Icons.email),
@@ -64,6 +63,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 20),
 
                 TextField(
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     labelText: "Password",
@@ -79,7 +79,35 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      try {
+
+                        final response = await authService.login(
+                          emailController.text,
+                          passwordController.text,
+                        );
+
+                       // print(response.data);
+                        final prefs = await SharedPreferences.getInstance();
+
+                        await prefs.setString(
+                          "token",
+                          response.data["token"],
+                        );
+
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomeScreen(),
+                          ),
+                        );
+
+                      } catch (e) {
+
+                        print(e);
+
+                      }
+                    },
                     child: const Text(
                       "LOGIN",
                       style: TextStyle(fontSize: 16),
