@@ -10,7 +10,7 @@ class AuthService {
         "Accept": "application/json",
       },
     ),
-  );
+  );//end
 
   Future<Response> login(
       String email,
@@ -24,6 +24,32 @@ class AuthService {
         "password": password,
       },
     );
-  }
+  }//end
 
-}
+  Future<Response> user(String token) async {
+
+    return await dio.get(
+      "/user",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
+  Future<Response> logout(String token) async {
+
+    return await dio.post(
+      "/logout",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
+}//main class
