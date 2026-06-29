@@ -123,4 +123,40 @@ class ApiService {
 
   }//end
 
+  //load transaction  history
+  Future<Response> transactions() async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.get(
+      "/warehouse/transactions",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
+  //load return history
+  Future<Response> returns() async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.get(
+      "/warehouse/returns",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
 }

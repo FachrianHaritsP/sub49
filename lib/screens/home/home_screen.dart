@@ -7,6 +7,7 @@ import '../stock/stockIn_screen.dart';
 import '../stock/stockOut_screen.dart';
 import '../opname/opname_screen.dart';
 import '../returns/return_screen.dart';
+import '../history/history_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -81,8 +82,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ), //appbar
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
+          horizontal: 15,
+          vertical: 5,
         ),
         child: Column(
           children: [
@@ -123,7 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
 
             // Card Inventory
             Card(
@@ -143,16 +144,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 borderRadius: BorderRadius.circular(16),
                 child: const SizedBox(
                   width: double.infinity,
-                  height: 150,
+                  height: 100,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
                         Icons.inventory_2,
-                        size: 60,
+                        size: 50,
                         color: Colors.lightBlueAccent,
                       ),
-                      SizedBox(height: 12),
+                      SizedBox(height: 10),
                       Text(
                         "Inventory",
                         style: TextStyle(
@@ -166,7 +167,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
 
             // row 2 stock
             Row(
@@ -207,7 +208,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(width: 15),
+                const SizedBox(width: 10),
 
                 Expanded(
                   child: Card(
@@ -248,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             //row baru buat card sisa
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
 
             Row(
               children: [
@@ -288,7 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                const SizedBox(width: 15),
+                const SizedBox(width: 10),
 
                 Expanded(
                   child: Card(
@@ -324,11 +325,53 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-
               ],
             ),
 
-          ],
+            // Card History
+            Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const HistoryScreen(),
+                    ),
+                  );
+                },
+                borderRadius: BorderRadius.circular(16),
+                child: const SizedBox(
+                  width: double.infinity,
+                  height: 100,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.history_sharp,
+                        size: 50,
+                        color: Colors.brown,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "History",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 10),
+
+          ],// end child?
         ),
       ),
 
