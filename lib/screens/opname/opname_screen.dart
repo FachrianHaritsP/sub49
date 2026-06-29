@@ -7,11 +7,11 @@ class OpnameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Return Screen"),
+        title: const Text("Stock Opname Screen"),
       ),
       body: const Center(
         child: Text(
-          "Return Screen",
+          "Stock Opname Screen",
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,

@@ -97,4 +97,30 @@ class ApiService {
 
   }//end
 
+  Future<Response> returnProduct(
+      int productId,
+      int qty,
+      String reason,
+      ) async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.post(
+      "/warehouse/returns",
+      data: {
+        "product_id": productId,
+        "qty": qty,
+        "reason": reason,
+      },
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
 }
