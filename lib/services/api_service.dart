@@ -73,4 +73,28 @@ class ApiService {
 
   }//end
 
+  Future<Response> stockOut(
+      int productId,
+      int qty,
+      ) async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.post(
+      "/warehouse/stock-out",
+      data: {
+        "product_id": productId,
+        "qty": qty,
+      },
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
 }
