@@ -18,15 +18,6 @@ class ApiService {
 
     final token = prefs.getString("token");
 
-    // return await dio.get(
-    //   "/warehouse/products",
-    //   options: Options(
-    //     headers: {
-    //       "Authorization": "Bearer $token",
-    //     },
-    //   ),
-    // );
-
     return await dio.get(
       "/warehouse/products",
       queryParameters: {
@@ -39,6 +30,47 @@ class ApiService {
       ),
     );
 
-  }
+  }//end
+
+  Future<Response> scanProduct(String sku) async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.get(
+      "/warehouse/scan/$sku",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
+
+  Future<Response> stockIn(
+      int productId,
+      int quantity,
+      ) async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.post(
+      "/warehouse/stock-in",
+      data: {
+        "product_id": productId,
+        "qty": quantity,
+      },
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }//end
 
 }

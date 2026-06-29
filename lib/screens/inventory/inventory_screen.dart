@@ -95,7 +95,7 @@ class _InventoryScreenState extends State<InventoryScreen> {
 
                           Text("Size : ${product["size"]}"),
                           Text("Color : ${product["color"]}"),
-                          
+
                           const SizedBox(height: 6),
 
                           Text(

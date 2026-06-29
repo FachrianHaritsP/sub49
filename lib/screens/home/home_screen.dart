@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../services/auth_service.dart';
-import '../../services/api_service.dart';
 import '../login/login_screen.dart';
 import '../inventory/inventory_screen.dart';
 import '../stock/stockIn_screen.dart';
@@ -180,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => const StockinScreen(),
+                            builder: (_) => const StockInScreen(),
                           ),
                         );
                       },
