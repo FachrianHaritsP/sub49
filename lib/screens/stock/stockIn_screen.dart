@@ -18,7 +18,7 @@ class _StockInScreenState extends State<StockInScreen> {
   final apiService = ApiService();
 
 
-  @override
+  //@override
 
   Future<void> scanProduct() async {
 
@@ -135,6 +135,7 @@ class _StockInScreenState extends State<StockInScreen> {
 
           const SizedBox(height: 20),
 
+          if (product != null)...[
           Row(
             children: [
 
@@ -156,7 +157,7 @@ class _StockInScreenState extends State<StockInScreen> {
 
             ],
           ),
-
+          ],
         ],
       ),
 

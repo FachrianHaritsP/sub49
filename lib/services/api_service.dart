@@ -159,4 +159,70 @@ class ApiService {
 
   }//end
 
+  //stock opname
+  Future<Response> activeSession() async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.get(
+      "/warehouse/stock-opname/active-session",
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }
+
+  //save opname
+  Future<Response> stockOpname(
+      int productId,
+      int physicalStock,
+      String sessionCode,
+      ) async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.post(
+      "/warehouse/stock-opname",
+      data: {
+        "product_id": productId,
+        "physical_stock": physicalStock,
+        "session_code": sessionCode,
+      },
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }
+
+  //stock opname mini sessionCode
+  Future<Response> opnameHistory(String sessionCode) async {
+
+    final prefs = await SharedPreferences.getInstance();
+
+    final token = prefs.getString("token");
+
+    return await dio.get(
+      "/warehouse/stock-opname/history",
+      queryParameters: {
+        "session_code": sessionCode,
+      },
+      options: Options(
+        headers: {
+          "Authorization": "Bearer $token",
+        },
+      ),
+    );
+
+  }
+
 }
